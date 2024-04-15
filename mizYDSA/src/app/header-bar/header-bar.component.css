@@ -1,0 +1,10 @@
+mat-toolbar {
+    background-color: #EC1F27;
+    height: 64px;
+    padding:2em;
+    display: flex;
+}
+
+img {
+    height:inherit
+}

@@ -1,0 +1,15 @@
+
+app-header-bar {
+    position: sticky;
+    top:0;
+    width:100%
+}
+
+#main-content {
+    
+}
+
+app-footer {
+    position: absolute;
+    bottom:0
+}
