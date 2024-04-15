@@ -1,10 +1,33 @@
 mat-toolbar {
-    background-color: #EC1F27;
-    height: 64px;
-    padding:2em;
     display: flex;
+    align-items: center;
+    height:64px;
+    gap:1em;
 }
 
-img {
-    height:inherit
+#links {
+    width:100%;
+    height:inherit;
+    display: flex;
+    gap:2em;
+}
+
+button {
+    height: inherit;
+    border-radius: 0;
+}
+
+button:hover {
+    background-color: black;
+    color:white
+}
+
+a {
+    height: 90%;
+    text-decoration: none;
+}
+  
+a img {
+    height: inherit;
+    display: block;
 }

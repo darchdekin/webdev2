@@ -1,0 +1,41 @@
+table{
+    width: 800px;
+    border-spacing: 0;
+}
+
+tr {
+    width:inherit;
+    height:10em;
+}
+
+td {
+    width:inherit;
+    height:inherit;
+    text-align: center;
+    vertical-align: middle;
+    padding:0;
+    margin:0;
+}
+
+a {
+    width: inherit;
+    height: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+a:hover {
+    background-color: black !important;
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+
+@media only screen and (max-width: 800px) {
+    table{
+        width: 100vw;
+    }
+}
