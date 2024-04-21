@@ -1,0 +1,23 @@
+<h1>New Event</h1>
+
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Event Name</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Event Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Event Summary</mat-label>
+      <textarea matInput formControlName="summary" rows="5"></textarea>
+    </mat-form-field>
+  
+    <button mat-flat-button color="primary" type="submit">Submit</button>
+  </form>
+  
