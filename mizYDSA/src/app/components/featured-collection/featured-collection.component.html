@@ -1,0 +1,19 @@
+
+
+
+<div *ngIf="events.length > 0; else noEvents">
+    <table>
+        <tr *ngFor="let event of events; let i = index">
+            <a routerLink="/event/{{event._id}}" [ngStyle]="{ 'background-color': getRowColor(i) }">
+                <td>      
+                    <h2>{{ event.title }}</h2>
+                    {{ event.date | date }}
+               </td>
+            </a>
+            
+        </tr>
+    </table>
+</div>
+<ng-template #noEvents>
+  <p>No events found.</p>
+</ng-template>

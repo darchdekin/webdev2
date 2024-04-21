@@ -1,0 +1,7 @@
+<div *ngIf="event">
+    <h2>{{ event.title }}</h2>
+    <p>Date: {{ event.date | date }}</p>
+    <p *ngIf="event.summary">{{ event.summary }}</p>
+  </div>
+  <p *ngIf="!event">Event not found.</p>
+  
