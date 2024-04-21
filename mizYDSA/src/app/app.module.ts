@@ -1,7 +1,6 @@
 import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -15,14 +14,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SearchPageComponent } from './search-page/search-page.component';
-import { FeaturedCollectionComponent } from './featured-collection/featured-collection.component';
-import { NewEventComponent } from './new-event/new-event.component';
-import { NewPhotoComponent } from './new-photo/new-photo.component';
-import { NewComponent } from './new/new.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+import { FeaturedCollectionComponent } from './components/featured-collection/featured-collection.component';
+import { NewEventComponent } from './components/new-event/new-event.component';
+import { NewPhotoComponent } from './components/new-photo/new-photo.component';
+import { NewComponent } from './components/new/new.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ViewEventComponent } from './components/view-event/view-event.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +36,14 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     FeaturedCollectionComponent,
     NewEventComponent,
     NewPhotoComponent,
-    NewComponent
+    NewComponent,
+    ViewEventComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
