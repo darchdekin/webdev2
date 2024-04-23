@@ -4,5 +4,7 @@ export interface Photo {
     date?:Date
     caption?:string,
     event?:string,
-    url:string
+    url:string,
+    tags: [string],
+    credit: [string]
 }

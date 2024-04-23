@@ -17,7 +17,9 @@ export class MassNewPhotoComponent {
       links: new FormControl(''),
       date: new FormControl(new Date()),
       event: new FormControl(''),
-      name: new FormControl('')
+      name: new FormControl(''),
+      tags: new FormControl(''),
+      credit: new FormControl('')
     }
   )
 
@@ -28,11 +30,13 @@ export class MassNewPhotoComponent {
     let event = this.massPhotosForm.value.event
     let date = this.massPhotosForm.value.date
     const name = this.massPhotosForm.value.name
+    let tags = this.massPhotosForm.value.tags != "" ? this.massPhotosForm.value.tags?.split(',').map(s => s.trim()) : undefined
+    let credit = this.massPhotosForm.value.credit != "" ? this.massPhotosForm.value.credit?.split(',').map(s => s.trim()) : undefined
 
     if(linkList == undefined || name == undefined) return
 
     console.log(linkList);
-    this.photoService.massPhotoLinks(linkList, event, date, name).subscribe({
+    this.photoService.massPhotoLinks(linkList, event, date, name, tags, credit).subscribe({
       next: (response) => {
         console.log('Links processed successfully:', response);
         // Optionally, you can reset the form after successful submission

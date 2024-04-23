@@ -80,7 +80,7 @@ app.get('/photos/:photoId', async (req, res) => {
 })
 
 app.post('/photos/mass-create', async (req, res) => {
-  const { event_id, name, date, links } = req.body;
+  const { event_id, name, date, links, tags, credit } = req.body;
 
   let i = 0;
   let e
@@ -95,17 +95,20 @@ app.post('/photos/mass-create', async (req, res) => {
     const directLinks = await Promise.all(links.map(getDirectLink));
     // Assuming `Image` is your Mongoose model for storing image documents
     for(; i < directLinks.length; i++) {
+      console.log(i)
       const p = new Photo({
         title: name + "_" + i,
-        event: event_id,
-        date: date,
-        url: directLinks[i]
+        event: event_id ? event_id : null,
+        date: date ? date : null,
+        url: directLinks[i],
+        tags: tags,
+        credit: credit
       })
       console.log(i, p)
       await p.save()
     }
     
-    if(e) {
+    if(e !== undefined) {
       e.photo_c = i + 1
       await e.save()
     }
