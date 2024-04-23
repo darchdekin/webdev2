@@ -1,5 +1,5 @@
 table{
-    width: 800px;
+    width: inherit;
     border-spacing: 0;
 }
 
@@ -33,9 +33,3 @@ span {
     vertical-align: middle;
     line-height: normal;
   }
-
-@media only screen and (max-width: 800px) {
-    table{
-        width: 100vw;
-    }
-}
