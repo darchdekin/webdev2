@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Event } from '../models/event';
 import { Photo } from '../models/photo';
 
 @Injectable({
@@ -28,4 +27,9 @@ export class PhotoService {
   getPhotoById(id: string): Observable<Photo>{
     return this.http.get<Photo>(`${this.baseApiUrl}/${id}`)
   }
+
+  getPhotosByEvent(id: string): Observable<Photo[]> {
+    return this.http.get<Photo[]>(`${this.baseApiUrl}/event/${id}`)
+  }
+
 }

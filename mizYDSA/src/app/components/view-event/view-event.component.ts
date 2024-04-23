@@ -19,6 +19,7 @@ export class ViewEventComponent implements OnInit {
   }
 
   loadEvent(): void {
+
     const eventId = this.route.snapshot.paramMap.get('id'); // Get event ID from URL
     if (eventId) {
       this.eventsService.getEventById(eventId).subscribe(

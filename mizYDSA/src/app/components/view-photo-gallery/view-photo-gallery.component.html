@@ -1,0 +1,20 @@
+<mat-paginator [length]="totalImages"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[10, 25, 50, 100]"
+              [pageIndex]="pageIndex"
+              showFirstLastButtons="true"
+              (page)="handlePageEvent($event)"
+              >
+</mat-paginator>
+
+
+<app-photo-grid [photos]="childPhotos" id="photoGrid"/>
+
+<mat-paginator [length]="totalImages"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[10, 25, 50, 100]"
+              [pageIndex]="pageIndex"
+              showFirstLastButtons="true"
+              (page)="handlePageEvent($event)"
+              >
+</mat-paginator>

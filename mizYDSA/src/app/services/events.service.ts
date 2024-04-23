@@ -19,5 +19,4 @@ export class EventsService {
     return this.http.get<Event>(`${this.apiUrl}/${id}`);
   }
 
-
 }

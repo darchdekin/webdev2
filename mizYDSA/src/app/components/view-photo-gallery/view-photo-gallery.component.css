@@ -1,0 +1,13 @@
+
+@media screen and (width >= 1080px) {
+    #photoGrid {
+        width:1080px;
+        min-width: 80vw;
+    }
+}
+
+@media screen and (width < 1080px) {
+    #photoGrid {
+        width:100%;
+    }
+}

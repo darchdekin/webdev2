@@ -9,6 +9,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatInputModule} from '@angular/material/input'
+import {MatPaginatorModule} from '@angular/material/paginator'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewEventComponent } from './components/view-event/view-event.component';
 import { MassNewPhotoComponent } from './components/mass-new-photo/mass-new-photo.component';
 import { ViewPhotoComponent } from './components/view-photo/view-photo.component';
+import { ViewPhotoGalleryComponent } from './components/view-photo-gallery/view-photo-gallery.component';
+import { PhotoGridComponent } from './components/photo-grid/photo-grid.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { ViewPhotoComponent } from './components/view-photo/view-photo.component
     NewComponent,
     ViewEventComponent,
     MassNewPhotoComponent,
-    ViewPhotoComponent
+    ViewPhotoComponent,
+    ViewPhotoGalleryComponent,
+    PhotoGridComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,7 @@ import { ViewPhotoComponent } from './components/view-photo/view-photo.component
     MatTabsModule,
     MatFormFieldModule,
     MatDatepickerModule,
+    MatPaginatorModule,
     ReactiveFormsModule
   ],
   providers: [],

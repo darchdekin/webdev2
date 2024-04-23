@@ -2,6 +2,7 @@
     <h2>{{ event.title }}</h2>
     <p>Date: {{ event.date | date }}</p>
     <p *ngIf="event.summary">{{ event.summary }}</p>
+    <a routerLink="{{'/photos/event/' + event._id }}">View image gallery</a>
   </div>
   <p *ngIf="!event">Event not found.</p>
   
