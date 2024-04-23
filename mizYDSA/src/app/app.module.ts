@@ -24,6 +24,8 @@ import { NewComponent } from './components/new/new.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewEventComponent } from './components/view-event/view-event.component';
+import { MassNewPhotoComponent } from './components/mass-new-photo/mass-new-photo.component';
+import { ViewPhotoComponent } from './components/view-photo/view-photo.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ViewEventComponent } from './components/view-event/view-event.component
     NewEventComponent,
     NewPhotoComponent,
     NewComponent,
-    ViewEventComponent
+    ViewEventComponent,
+    MassNewPhotoComponent,
+    ViewPhotoComponent
   ],
   imports: [
     BrowserModule,

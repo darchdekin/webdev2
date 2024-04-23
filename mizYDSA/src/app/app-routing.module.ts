@@ -7,6 +7,8 @@ import { NewEventComponent } from './components/new-event/new-event.component';
 import { NewPhotoComponent } from './components/new-photo/new-photo.component';
 import { NewComponent } from './components/new/new.component';
 import { ViewEventComponent } from './components/view-event/view-event.component';
+import { MassNewPhotoComponent } from './components/mass-new-photo/mass-new-photo.component';
+import { ViewPhotoComponent } from './components/view-photo/view-photo.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: 'new', component:NewComponent},
   {path: 'new/event', component: NewEventComponent},
   {path: 'new/photo', component: NewPhotoComponent},
-  { path: 'event/:id', component: ViewEventComponent }
+  {path: 'new/mass-photo', component: MassNewPhotoComponent},
+  { path: 'event/:id', component: ViewEventComponent },
+  {path: 'photo/:id', component: ViewPhotoComponent}
   //{path: '**', component: PageNotFoundComponent},
 ];
 
