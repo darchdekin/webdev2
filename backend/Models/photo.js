@@ -5,7 +5,7 @@ photoSchema = new mongoose.Schema({
     title: {type:String, required: true },
     date:{type:Date, require: false},
     caption:{type:String, require:false},
-    event:{type:ObjectId, require:false},
+    event:{type:ObjectId, ref: 'Event', require:false},
     url:{type:String, required: true},
     tags:[{type:String, required: false}],
     credit:[{type:String, required: false}]

@@ -11,9 +11,21 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
-  massPhotoLinks(links: string[], event: string | undefined | null, date: Date | undefined | null, name: string, tags: string[] | undefined, credit: string[] | undefined): Observable<any> {
-    const apiUrl = `${this.baseApiUrl}/mass-create`; // Assuming this is your server's endpoint
-    console.log("Mass photo upload")
+  addPhoto(name: string, link: string, isDrive: boolean, event?: string, date?: Date, credit?: string[], tags?: string[], caption?: string) {
+    return this.http.post<any>(this.baseApiUrl, {
+      name: name,
+      link: link,
+      isDrive: isDrive,
+      event_id: event,
+      date: date,
+      credit: credit,
+      tags: tags,
+      caption: caption
+    })
+  }
+
+  addManyPhotos(name: string, links: string[], event: string | undefined | null, date: Date | undefined | null, tags: string[] | undefined, credit: string[] | undefined): Observable<any> {
+    const apiUrl = `${this.baseApiUrl}/mass-create`;
     return this.http.post<any>(apiUrl, {
       event_id: event,
       date: date,

@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 router.get('/:photoId', async (req, res) => {
   const photoId = req.params.photoId
   try {
-    const photo = await Photo.findById(photoId);
+    const photo = await Photo.findById(photoId).populate('event');
 
     if (!photo) {
       return res.status(404).json({ message: 'Photo not found' });
@@ -56,9 +56,40 @@ router.get('/event/:eventId', async (req, res) => {
 
 //add photos
 
+//add one photo
+router.post('/', async (req, res) => {
+  const { event_id, name, date, link, tags, credit, is_drive, caption } = req.body;
+
+  try {
+    let p = new Photo({
+      date: date ? date : null,
+      event: event_id ? event_id : null,
+      tags: tags,
+      credit: credit,
+      caption: caption
+    })
+
+    p.url = is_drive ? await getDirectLink(link) : link
+
+    if(event_id) {
+      const e = await Event.findById(event_id)
+      if(e.photo_c) {
+        p.title = name + "_" + e.photo_c
+        e.photo_c = e.photo_c + 1
+        await e.save
+      } else p.title = name
+    } else p.title = name
+
+    await p.save()
+    res.status(201).json({ message: 'Image created successfully', p });
+  } catch (error) {
+    res.status(500).json({ message: 'Error processing links', error });
+  }
+})
+
 //add many links to google drive photos
-router.post('/photos/mass-create', async (req, res) => {
-  const { event_id, name, date, links, tags, credit } = req.body;
+router.post('/mass-create', async (req, res) => {
+  const { event_id, name, date, links, tags, credit, is_drive } = req.body;
 
   let i = 0;
   let e
@@ -70,8 +101,8 @@ router.post('/photos/mass-create', async (req, res) => {
 
   try {
     console.log(links)
-    const directLinks = await Promise.all(links.map(getDirectLink));
-    // Assuming `Image` is your Mongoose model for storing image documents
+    const directLinks = is_drive ? await Promise.all(links.map(getDirectLink)) : links
+    
     for(; i < directLinks.length; i++) {
       console.log(i)
       const p = new Photo({
@@ -97,12 +128,34 @@ router.post('/photos/mass-create', async (req, res) => {
 });
 
 async function getDirectLink(link) {
-  // Extract file ID from Google Drive link\
+  // Extract file ID from Google Drive link
   let splitLink = link.split('\/')
   let fileId = splitLink[splitLink.length - 2]
   // Construct direct link
   const directLink = `https://lh3.googleusercontent.com/d/${fileId}`;
   return directLink;
 }
+
+// edit photos
+
+//edit 1 photo
+router.post('/:photoId', async (req, res) => {
+  const { event_id, name, date, tags, credit, caption } = req.body;
+
+  try {
+    let p = await Photo.findById(photoId)
+    p.title = name
+    p.date = date
+    p.tags = tags
+    p.credit = credit
+    p.caption = caption
+    p.event = event_id
+    await p.save
+    res.status(201).json({ message: 'Image edited successfully', p })
+  } catch {
+    res.status(500).json({ message: 'Error editing image', error });
+  }
+})
+
 
 module.exports = router;

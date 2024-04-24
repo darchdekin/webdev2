@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatInputModule} from '@angular/material/input'
 import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,6 +62,7 @@ import { PhotoGridComponent } from './components/photo-grid/photo-grid.component
     MatFormFieldModule,
     MatDatepickerModule,
     MatPaginatorModule,
+    MatCheckboxModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -36,7 +36,7 @@ export class MassNewPhotoComponent {
     if(linkList == undefined || name == undefined) return
 
     console.log(linkList);
-    this.photoService.massPhotoLinks(linkList, event, date, name, tags, credit).subscribe({
+    this.photoService.addManyPhotos(name, linkList, event, date, tags, credit).subscribe({
       next: (response) => {
         console.log('Links processed successfully:', response);
         // Optionally, you can reset the form after successful submission
