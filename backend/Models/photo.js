@@ -8,7 +8,8 @@ photoSchema = new mongoose.Schema({
     event:{type:ObjectId, ref: 'Event', require:false},
     url:{type:String, required: true},
     tags:[{type:String, required: false}],
-    credit:[{type:String, required: false}]
+    credit:[{type:String, required: false}],
+    campaign:{type:ObjectId, ref:'campaign'}
 })
 
 module.exports = mongoose.model('Photo', photoSchema)

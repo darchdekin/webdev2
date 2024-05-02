@@ -6,6 +6,8 @@ const app = express()
 const port = 3000
 
 const photosRouter = require('./routes/photos');
+const eventRouter = require('./routes/eventRouter')
+const campaignRouter = require('./routes/campaignRouter')
 
 const uri = "mongodb+srv://darchdekin02:DpTeZx2NFa143bz8@final.sotpyed.mongodb.net/ydsa?retryWrites=true&w=majority&appName=Final";
 
@@ -25,36 +27,9 @@ mongoose.connect(uri, clientOptions)
 
 
 app.use('/photos', photosRouter);
-
-const Event = require('./Models/event')
-app.get('/events', async (req, res) => {
-  try {
-    const events = await Event.find(); // Retrieve all documents from the 'books' collection
-    res.json(events); // Send the retrieved documents as JSON response
-  } catch (err) {
-    console.error('Error retrieving events:', err);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-app.get('/events/:eventId', async (req, res) => {
-  const eventId = req.params.eventId;
-
-  try {
-    const event = await Event.findById(eventId);
-
-    if (!event) {
-      return res.status(404).json({ message: 'Event not found' });
-    }
-
-    res.json(event);
-  } catch (err) {
-    console.error('Error retrieving event:', err);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
+app.use('/events', eventRouter)
+app.use('/campaigns', campaignRouter)
 
 
-
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('YDSA Archive API running.'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

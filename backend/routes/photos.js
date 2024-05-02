@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Photo = require('../Models/photo')
+const Event = require('../Models/event')
 
 
 // get photos
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
 router.get('/:photoId', async (req, res) => {
   const photoId = req.params.photoId
   try {
-    const photo = await Photo.findById(photoId).populate('event');
+    const photo = await Photo.findById(photoId).populate('event').populate('campaign');
 
     if (!photo) {
       return res.status(404).json({ message: 'Photo not found' });
@@ -40,18 +41,25 @@ router.get('/event/:eventId', async (req, res) => {
   //const page = req.query.page;
   //const pageSize = req.query.pageSize;
   try {
+    const event = await Event.findById(eventId)
+    if(!event) return res.status(404).json({ message: 'Event not found' })
+
     const photos = await Photo.find({event: eventId});
+    if (!photos) return res.status(404).json({ message: 'Photos not found' });
 
-    if (!photos) {
-      return res.status(404).json({ message: 'Photos not found' });
-    }
+    res.json({
+      event: event,
+      photos: photos
+    })
 
-    res.json(photos)
   } catch (err) {
     console.error('Error retrieving photos:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 })
+
+//get photos by campaign ID
+//TODO
 
 
 //add photos
@@ -140,7 +148,7 @@ async function getDirectLink(link) {
 
 //edit 1 photo
 router.post('/:photoId', async (req, res) => {
-  const { event_id, name, date, tags, credit, caption } = req.body;
+  const { event_id, name, date, tags, credit, caption, campaign } = req.body;
 
   try {
     let p = await Photo.findById(photoId)
@@ -150,6 +158,7 @@ router.post('/:photoId', async (req, res) => {
     p.credit = credit
     p.caption = caption
     p.event = event_id
+    p.campaign = campaign
     await p.save
     res.status(201).json({ message: 'Image edited successfully', p })
   } catch {
