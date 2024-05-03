@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const path = require('path')
 const app = express()
 const port = 3000
 
@@ -26,10 +27,16 @@ mongoose.connect(uri, clientOptions)
   });
 
 
-app.use('/photos', photosRouter);
-app.use('/events', eventRouter)
-app.use('/campaigns', campaignRouter)
+app.use('/api/photos', photosRouter);
+app.use('/api/events', eventRouter)
+app.use('/api/campaigns', campaignRouter)
+app.get('/api', (req, res) => res.send('YDSA Archive API running.'))
 
 
-app.get('/', (req, res) => res.send('YDSA Archive API running.'))
+
+app.use(express.static(path.join(__dirname, 'browser')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'browser/index.html'));
+});
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
