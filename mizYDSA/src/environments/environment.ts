@@ -1,7 +1,6 @@
 export const environment = {
-    production: false,
-    //apiUrl: 'http://localhost:3000/api'
-    //apiUrl: 'http://54.227.157.207:3000/api'
-    apiUrl: '/api'
+    production: true,
+    apiUrl: 'https://shielded-bastion-92949-ddc15f7bec1b.herokuapp.com/api'
+    //apiUrl: '/api'
   };
   

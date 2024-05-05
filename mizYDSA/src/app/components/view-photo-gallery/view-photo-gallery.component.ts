@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { PageEvent } from '@angular/material/paginator';
 
-import { Photo } from '../../models/photo';
+import { Photo, PhotoGallery } from '../../models/photo';
 import { Event } from '../../models/event';
 import { PhotoService } from '../../services/photo.service';
 
@@ -15,7 +15,7 @@ import { PhotoService } from '../../services/photo.service';
 export class ViewPhotoGalleryComponent implements OnInit{
   photos: Photo[] | undefined;
   childPhotos: Photo[] = []
-  event: Event | undefined;
+  event?: Event
 
   // Paginator
   totalImages: number = 100
@@ -30,8 +30,9 @@ export class ViewPhotoGalleryComponent implements OnInit{
 
     if(eventId){
       this.photoService.getPhotosByEvent(eventId).subscribe({
-        next: (value: Photo[]) => {
-          this.photos = value
+        next: (value: PhotoGallery) => {
+          this.photos = value.photos
+          this.event = value.event
           this.totalImages = this.photos.length
           this.calculatePages(10, 0)
         },

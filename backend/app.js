@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const path = require('path')
 const app = express()
-const port = 3000
+
+const port = process.env.PORT || 3000
 
 const photosRouter = require('./routes/photos');
 const eventRouter = require('./routes/eventRouter')
@@ -39,4 +40,6 @@ app.use(express.static(path.join(__dirname, 'browser')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'browser/index.html'));
 });
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

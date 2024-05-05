@@ -1,3 +1,5 @@
+import { Event } from "./event";
+
 export interface Photo {
     _id: string;
     title: string,
@@ -8,3 +10,9 @@ export interface Photo {
     tags: [string],
     credit: [string]
 }
+
+
+export interface PhotoGallery {
+    photos: Photo[],
+    event?: Event
+  }
