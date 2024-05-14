@@ -7,7 +7,9 @@ const app = express()
 
 const port = process.env.PORT || 3000
 
-const photosRouter = require('./routes/photos');
+require('./Models/photo')
+
+const photoRouter = require('./routes/photoRouter');
 const eventRouter = require('./routes/eventRouter')
 const campaignRouter = require('./routes/campaignRouter')
 
@@ -28,7 +30,7 @@ mongoose.connect(uri, clientOptions)
   });
 
 
-app.use('/api/photos', photosRouter);
+app.use('/api/photos', photoRouter);
 app.use('/api/events', eventRouter)
 app.use('/api/campaigns', campaignRouter)
 app.get('/api', (req, res) => res.send('YDSA Archive API running.'))

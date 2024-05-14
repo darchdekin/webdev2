@@ -12,7 +12,7 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
-  addPhoto(name: string, link: string, isDrive: boolean, event?: string, date?: Date, credit?: string[], tags?: string[], caption?: string) {
+  addPhoto(name: string, link: string, isDrive: boolean, event?: string, date?: Date, credit?: string[], tags?: string[], caption?: string, convert?: boolean) {
     return this.http.post<any>(this.baseApiUrl, {
       name: name,
       link: link,
@@ -21,11 +21,12 @@ export class PhotoService {
       date: date,
       credit: credit,
       tags: tags,
-      caption: caption
+      caption: caption,
+      convert: convert
     })
   }
 
-  addManyPhotos(name: string, links: string[], event: string | undefined | null, date: Date | undefined | null, tags: string[] | undefined, credit: string[] | undefined): Observable<any> {
+  addManyPhotos(name: string, links: string[], event: string | undefined | null, date: Date | undefined | null, tags: string[] | undefined, credit: string[] | undefined, convert?: boolean): Observable<any> {
     const apiUrl = `${this.baseApiUrl}/mass-create`;
     return this.http.post<any>(apiUrl, {
       event_id: event,
@@ -33,7 +34,8 @@ export class PhotoService {
       name: name,
       links: links,
       tags: tags,
-      credit: credit
+      credit: credit,
+      convert: convert
     });
   }
 

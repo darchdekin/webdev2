@@ -1,11 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-image: url("assets/graphics/background.jpg");
-    background-size: cover;
-    background-attachment: fixed;
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
     min-height:100vh;
     max-width: 100vw;
+    background-image: url("assets/graphics/miz-ydsa-logo-white.png"), url("assets/graphics/background.jpg");
+    background-size: 700px, cover;
+    background-attachment: scroll, fixed;
+    background-repeat: no-repeat;
+    background-position: calc(50vw - 750px) 50px, left top;
+}
+
+@media (max-width:1200px){
+    body{
+        background-position: -150px 50px, left top;
+    }
 }
 
 .textbox {
@@ -15,4 +24,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 form {
     display:flex;
     flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:"Oswald", sans-serif;
+    font-weight: 400;
+    text-shadow: 1px 2px 0px #CE5937;
+    margin-top: 0em;
+}
+
+
+@media (min-width:600px){
+
+}
+
+@media (max-width:600px){
+
 }

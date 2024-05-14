@@ -6,8 +6,8 @@ eventSchema = new mongoose.Schema({
     date:{type:Date, required: true},
     summary:{type:String, required: false},
     photo_c:{type:Number, required: false},
-    cover_image:{type:ObjectId, ref:'photo', required: false},
-    campaign:{type:ObjectId, ref:'campaign'}
+    cover_image:{type:ObjectId, ref:'Photo', required: false},
+    campaign:{type:ObjectId, ref:'Campaign'}
 })
 
 module.exports = mongoose.model('Event', eventSchema);

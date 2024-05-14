@@ -7,7 +7,7 @@ const Event = require('../Models/event')
 // get all events
 router.get('/', async (req, res) => {
   try {
-    const events = await Event.find(); // Retrieve all documents from the 'books' collection
+    const events = await Event.find().populate('campaign').populate('cover_image', 'url');; // Retrieve all documents from the 'books' collection
     res.status(200).json(events); // Send the retrieved documents as JSON response
   } catch (err) {
     console.error('Error retrieving events:', err);
@@ -20,7 +20,7 @@ router.get('/:eventId', async (req, res) => {
   const eventId = req.params.eventId;
 
   try {
-    const event = await Event.findById(eventId).populate('campaign');
+    const event = await Event.findById(eventId).populate('campaign').populate('cover_image', 'url');
 
     if (!event) {
       res.status(404).json({ message: 'Event not found' });

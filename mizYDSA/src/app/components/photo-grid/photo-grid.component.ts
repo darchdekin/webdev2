@@ -7,5 +7,5 @@ import { Photo } from '../../models/photo';
   styleUrl: './photo-grid.component.css'
 })
 export class PhotoGridComponent {
-  @Input() photos: Photo[] | undefined = []
+  @Input() photos?: Photo[] = []
 }

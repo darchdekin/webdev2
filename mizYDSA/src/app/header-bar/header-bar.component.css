@@ -31,3 +31,15 @@ a {
 a img {
     height:100%
 }
+
+
+@media (min-width:601px){
+
+}
+    
+@media (max-width:600px){
+    img {
+        display: none;
+    }
+
+}

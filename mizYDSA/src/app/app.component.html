@@ -1,10 +1,15 @@
 
 <div id="page-container">
   <app-header-bar/>
-  <mat-card class="main-card">
-    <div class="content">
-      <router-outlet />
+  <div id="main-container">
+    <div id="title-text">{{this.titleService.getTitle()}} 
+      <div id="page-name-text">{{this.page.getName()}}</div>
     </div>
-  </mat-card>
+    <div id="main-card">
+      <div class="content">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
   <app-footer />
 </div>

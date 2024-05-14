@@ -1,0 +1,14 @@
+<div *ngIf="events; else noEvents">
+    <a *ngFor="let event of events; let i = index"
+    routerLink="/event/{{event._id}}">
+        <div class="event-card" [ngStyle]="getStyle(event, i)">
+            <div class="txt">
+                <div class="event-name">{{ event.title }}</div>
+                <div class="event-date">{{ event.date | date }}</div>
+            </div>
+        </div>
+    </a>
+</div>
+<ng-template #noEvents>
+  <p>No events found.</p>
+</ng-template>

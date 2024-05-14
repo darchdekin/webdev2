@@ -66,7 +66,7 @@ router.get('/event/:eventId', async (req, res) => {
 
 //add one photo
 router.post('/', async (req, res) => {
-  const { event_id, name, date, link, tags, credit, is_drive, caption } = req.body;
+  const { event_id, name, date, link, tags, credit, convert, caption } = req.body;
 
   try {
     let p = new Photo({
@@ -77,7 +77,7 @@ router.post('/', async (req, res) => {
       caption: caption
     })
 
-    p.url = is_drive ? await getDirectLink(link) : link
+    p.url = convert ? await getDirectLink(link) : link
 
     if(event_id) {
       const e = await Event.findById(event_id)
@@ -97,7 +97,7 @@ router.post('/', async (req, res) => {
 
 //add many links to google drive photos
 router.post('/mass-create', async (req, res) => {
-  const { event_id, name, date, links, tags, credit, is_drive } = req.body;
+  const { event_id, name, date, links, tags, credit, convert } = req.body;
 
   let i = 0;
   let e
@@ -109,7 +109,7 @@ router.post('/mass-create', async (req, res) => {
 
   try {
     console.log(links)
-    const directLinks = is_drive ? await Promise.all(links.map(getDirectLink)) : links
+    const directLinks = convert ? await Promise.all(links.map(getDirectLink)) : links
     
     for(; i < directLinks.length; i++) {
       console.log(i)
@@ -129,7 +129,7 @@ router.post('/mass-create', async (req, res) => {
       e.photo_c = i + 1
       await e.save()
     }
-    res.status(201).json({ message: 'Images created successfully', directLinks });
+    res.status(201).json({ message: 'Images created successfully', number: i });
   } catch (error) {
     res.status(500).json({ message: 'Error processing links', error });
   }
@@ -137,11 +137,14 @@ router.post('/mass-create', async (req, res) => {
 
 async function getDirectLink(link) {
   // Extract file ID from Google Drive link
-  let splitLink = link.split('\/')
-  let fileId = splitLink[splitLink.length - 2]
+  //let splitLink = link.split('\/')
+  //let fileId = splitLink[splitLink.length - 2]
   // Construct direct link
-  const directLink = `https://lh3.googleusercontent.com/d/${fileId}`;
+  //const directLink = `https://lh3.googleusercontent.com/d/${fileId}`;
+  const directLink = link.slice(0, 8) + "i." + link.slice(8) + ".jpg"
   return directLink;
+
+
 }
 
 // edit photos

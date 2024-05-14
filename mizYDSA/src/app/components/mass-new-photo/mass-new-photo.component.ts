@@ -4,6 +4,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import { PhotoService } from '../../services/photo.service';
 import { EventsService } from '../../services/events.service';
 import { Event } from '../../models/event';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mass-new-photo',
@@ -23,10 +24,10 @@ export class MassNewPhotoComponent {
     }
   )
 
-  constructor(private photoService: PhotoService) {}
+  constructor(private photoService: PhotoService, private _snackBar: MatSnackBar) {}
 
   onSubmit(){
-    const linkList = this.massPhotosForm.value.links?.split(',').map(s => s.trim())
+    const linkList = this.massPhotosForm.value.links?.split('\n').map(s => s.trim())
     let event = this.massPhotosForm.value.event
     let date = this.massPhotosForm.value.date
     const name = this.massPhotosForm.value.name
@@ -36,11 +37,12 @@ export class MassNewPhotoComponent {
     if(linkList == undefined || name == undefined) return
 
     console.log(linkList);
-    this.photoService.addManyPhotos(name, linkList, event, date, tags, credit).subscribe({
+    this.photoService.addManyPhotos(name, linkList, event, date, tags, credit, true).subscribe({
       next: (response) => {
         console.log('Links processed successfully:', response);
         // Optionally, you can reset the form after successful submission
-        //this.massPhotosForm.reset();
+        this._snackBar.open(`Added ${response.number} images`, "X");
+        this.massPhotosForm.reset();
       },
       error: (error) => {
         console.error('Error processing links:', error);

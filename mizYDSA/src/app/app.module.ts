@@ -1,11 +1,12 @@
 import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card'; 
-import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatInputModule} from '@angular/material/input'
@@ -19,7 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
-import { FeaturedCollectionComponent } from './components/featured-collection/featured-collection.component';
+import { EventListComponent } from './components/event-list/event-list.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { NewPhotoComponent } from './components/new-photo/new-photo.component';
 import { NewComponent } from './components/new/new.component';
@@ -39,7 +40,7 @@ import { PhotoGridComponent } from './components/photo-grid/photo-grid.component
     HomepageComponent,
     PageNotFoundComponent,
     SearchPageComponent,
-    FeaturedCollectionComponent,
+    EventListComponent,
     NewEventComponent,
     NewPhotoComponent,
     NewComponent,
